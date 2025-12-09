@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+*.ckpt
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Data and Audio Files
+1_source_audio/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.aac
+
+# Processed Datasets
+data_processed/
+data_processed_*/
+!data_processed/.gitkeep
+
+# Checkpoints and Model Weights
+checkpoints/
+!checkpoints/.gitkeep
+
+# TensorBoard Logs
+runs/
+!runs/.gitkeep
+
+# Inference Outputs
+inference_output/
+inference_v*/
+outputs/
+!inference_output/.gitkeep
+
+# Debug and Test Outputs
+debug_output/
+extra_audio/
+extra_audioLOW/
+processing_progress/
+
+# Trash
+Trash/
+
+# Large Files
+*.png
+*.jpg
+*.jpeg
+*.pdf
+!frequency_response_comparison.png
+
+# Logs
+*.log
+*.out
+
+# Temporary Files
+tmp/
+temp/
+*.tmp

@@ -1,0 +1,121 @@
+===============================================================================
+JaT-AudioSR V2 (Improved) - 快速命令参考
+===============================================================================
+
+模型改进 (全部针对质量):
+  1. ✅ GQA (Grouped-Query Attention) - Meta Llama 2/3技术
+  2. ✅ RoPE (Rotary Position Embeddings) - GPT-NeoX/LLaMA技术
+  3. ✅ U-shaped Timestep Sampling - 2024 NeurIPS (FID提升75%!)
+  4. ✅ 2.9x参数 (79M → ~230M) - DiT scaling law
+  5. ✅ adaLN-Zero - 稳定训练
+
+模型规模:
+  - V1 Full: 79M params, Hidden 768, Depth 12
+  - V2:      ~230M params, Hidden 1024, Depth 16 (2.9x larger!)
+
+训练配置:
+  - 学习率: 1e-4 (统一)
+  - Gradient clipping: max_norm=1.0
+  - U-shaped timestep sampling: 默认启用
+  - 建议epochs: 1000-2000
+
+===============================================================================
+
+【推荐测试】
+
+1. V2模型 6秒音频测试
+-------------------------------------------------------------------------------
+cd /home/husrcf/Code/AIAA/JaT
+conda activate AIAA
+python tests/test_dac_overfit_v2.py --duration 6.0 --epochs 1000
+
+
+2. V2模型 12秒音频测试
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit_v2.py --duration 12.0 --epochs 1000
+
+
+3. V2模型 8秒音频测试（中等长度）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit_v2.py --duration 8.0 --epochs 1000
+
+
+4. 关闭U-shaped sampling测试（对比实验）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit_v2.py --duration 6.0 --epochs 1000 --no-u-shaped
+
+
+【VRAM监控】
+-------------------------------------------------------------------------------
+# 在另一个终端运行
+nvtop
+
+# 或者
+watch -n 1 nvidia-smi
+
+
+【预期VRAM占用】
+
+V2模型 (~230M params):
+  - 6s音频:  ~15-20GB
+  - 8s音频:  ~18-25GB
+  - 10s音频: ~20-28GB
+  - 12s音频: ~25-35GB
+
+如果VRAM不足，可以：
+1. 减少音频长度 (--duration 4.0)
+2. 使用V1 Full模型 (79M, 只需8-12GB)
+
+
+【期望结果】
+
+✅ 训练loss: 1.0 → < 0.01 (1000-1500 epochs)
+✅ Correlation: > 0.999
+✅ 音频质量: 应该明显优于V1
+
+
+【输出文件】
+
+/home/husrcf/Code/AIAA/JaT/outputs/
+  - lr_audio_chunk.wav
+  - hr_audio_chunk.wav
+  - lr_reconstructed_v2.wav      (V2版本)
+  - hr_reconstructed_v2.wav      (V2版本)
+  - generated_audio_v2.wav       (V2生成)
+
+
+【质量对比】
+
+听这些文件对比V1和V2:
+  - outputs/generated_audio_dac.wav    (V1, 79M)
+  - outputs/generated_audio_v2.wav     (V2, 230M)
+
+V2应该有更好的:
+  - 更自然的音色
+  - 更少的伪影
+  - 更好的高频细节
+  - 更平滑的时间连续性
+
+
+【技术细节】
+
+V2的5大改进都针对质量:
+
+1. GQA - Meta验证，无质量损失
+2. RoPE - 更好的位置编码
+3. U-shaped sampling - **2024最新突破，FID提升75%!**
+4. 2.9x参数 - DiT scaling law: 越大越好
+5. adaLN-Zero - 训练更稳定
+
+详细说明: 查看 MODEL_V2_IMPROVEMENTS.md
+
+
+【文献支持】
+
+- DiT (ICCV 2023): https://arxiv.org/abs/2212.09748
+- GQA (Meta 2023): https://arxiv.org/abs/2305.13245
+- Improved Rectified Flow (NeurIPS 2024): https://arxiv.org/abs/2405.20320
+- RoPE: https://arxiv.org/abs/2104.09864
+
+
+===============================================================================

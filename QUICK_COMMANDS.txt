@@ -1,0 +1,97 @@
+===============================================================================
+JaT-AudioSR DAC Overfit Test - 快速命令参考
+===============================================================================
+
+训练配置:
+  - 学习率: 1e-4 (统一)
+  - Gradient clipping: max_norm=1.0
+  - 建议epochs: 1000-2000 (1e-4学习率较小，需要更多步数)
+
+【推荐测试顺序】
+
+1. 测试6秒 + Full模型（查看Full模型VRAM）
+-------------------------------------------------------------------------------
+cd /home/husrcf/Code/AIAA/JaT
+conda activate AIAA
+python tests/test_dac_overfit.py --duration 6.0 --model-size full --epochs 1000
+
+
+2. 测试12秒 + Full模型（查看长音频VRAM）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py --duration 12.0 --model-size full --epochs 1000
+
+
+3. 测试6秒 + Medium模型（如果Full太大）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py --duration 6.0 --model-size medium --epochs 1000
+
+
+4. 测试12秒 + Medium模型
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py --duration 12.0 --model-size medium --epochs 1000
+
+
+【其他有用的配置】
+
+5. 测试6秒 + Small模型（快速验证）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py --duration 6.0 --model-size small
+
+
+6. 测试8秒 + Full模型（中等长度）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py --duration 8.0 --model-size full
+
+
+7. 默认配置（10秒 + Full模型）
+-------------------------------------------------------------------------------
+python tests/test_dac_overfit.py
+
+
+【VRAM监控命令】
+
+在另一个终端运行（实时监控）：
+-------------------------------------------------------------------------------
+nvtop
+
+或者：
+-------------------------------------------------------------------------------
+watch -n 1 nvidia-smi
+
+
+【预期VRAM占用】
+
+Full模型 (768 hidden, 12 layers, ~79M params):
+  - 6s:  ~8-12GB
+  - 10s: ~10-14GB
+  - 12s: ~12-18GB
+
+Medium模型 (512 hidden, 8 layers, ~42M params):
+  - 6s:  ~6-9GB
+  - 10s: ~7-10GB
+  - 12s: ~9-13GB
+
+Small模型 (384 hidden, 6 layers, ~20M params):
+  - 6s:  ~4-6GB
+  - 10s: ~5-7GB
+  - 12s: ~6-9GB
+
+
+【期望结果】
+
+✅ 训练loss: 1.0 → < 0.01
+✅ Correlation: > 0.999
+✅ 音频无伪影、无抖动
+
+
+【输出文件位置】
+
+/home/husrcf/Code/AIAA/JaT/outputs/
+  - lr_audio_chunk.wav
+  - hr_audio_chunk.wav
+  - lr_reconstructed_dac.wav
+  - hr_reconstructed_dac.wav
+  - generated_audio_dac.wav
+
+
+===============================================================================
