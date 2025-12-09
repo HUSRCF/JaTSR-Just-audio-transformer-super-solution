@@ -31,9 +31,10 @@ Low-Res Audio (16kHz) → DAC Encoder → LR Latent [B, 1024, T/512]
 
 | 脚本 | 参数量 | 显存需求 | 主要特性 | 适用场景 |
 |------|--------|---------|---------|---------|
-| `train_ddp_v2.py` | 288M | ~11GB | 小模型，快速训练 | 资源受限，快速实验 |
-| `train_ddp_v3.py` | 766M | ~30GB | 大模型，仅 MSE loss | 基础 baseline |
-| `train_ddp_v3mod1.py` | 766M | ~30GB | + 频域损失 + 多尺度损失 | 初步改进（有频域 bug） |
+| `train_ddp_v1.py` | 60+75M | ~7GB | 极小模型，快速验证 | 原理验证 |
+| `train_ddp_v2.py` | 288+75M | ~13GB | 小模型，快速训练 | 资源受限，快速实验 |
+| `train_ddp_v3.py` | 766+75M | ~34GB | 大模型，仅 MSE loss | 基础 baseline |
+| `train_ddp_v3mod1.py` | 780+75M | ~34GB | + 频域损失 + 多尺度损失 | 初步改进（有频域 bug） |
 | **`train_ddp_v3mod2.py`** | **766M** | **~30GB** | **完整 Latent Perceptual Loss** | **推荐使用** |
 
 #### MOD2 核心改进
