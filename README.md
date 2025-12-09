@@ -1,19 +1,31 @@
+<div align="center">
+
+```
+╔═════════════════════════════════════════════╗
+║                                             ║
+║       ██╗ █████╗ ████████╗███████╗██████╗   ║
+║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║
+║       ██║███████║   ██║   ███████╗██████╔╝  ║
+║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║
+║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║
+║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║
+║                                             ║
+║    Just Audio Transformer Super Solution    ║
+║                                             ║
+╚═════════════════════════════════════════════╝
+```
+
 # JaT-AudioSR: Audio Super-Resolution with Diffusion Transformers
-<div style="font-family: monospace; line-height: 1.2;">
-<span style="color: #00ffff;">╔═════════════════════════════════════════════╗</span><br>
-<span style="color: #5fafff;">║                                             ║</span><br>
-<span style="color: #87dfff;">║       ██╗ █████╗ ████████╗███████╗██████╗   ║</span><br>
-<span style="color: #87d7ff;">║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║</span><br>
-<span style="color: #87afff;">║       ██║███████║   ██║   ███████╗██████╔╝  ║</span><br>
-<span style="color: #8787d7;">║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║</span><br>
-<span style="color: #875faf;">║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║</span><br>
-<span style="color: #8700d7;">║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║</span><br>
-<span style="color: #8700d7;">║                                             ║</span><br>
-<span style="color: #8700d7;">║    Just Audio Transformer Super Solution    ║</span><br>
-<span style="color: #ff00ff;">║                                             ║</span><br>
-<span style="color: #ff00ff;">╚═════════════════════════════════════════════╝</span>
+
+🎵 **高质量音频超分辨率系统** 🎵
+
+基于 Diffusion Transformer (DiT) 架构，使用 Flow Matching 训练范式和 DAC 编码器在潜空间进行生成。
+
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/License-Research-green.svg)](LICENSE)
+
 </div>
-高质量音频超分辨率系统，基于 Diffusion Transformer (DiT) 架构，使用 Flow Matching 训练范式和 DAC 编码器在潜空间进行生成。
 
 ## 主要特性
 

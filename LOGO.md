@@ -17,22 +17,44 @@
 ╚═════════════════════════════════════════════╝
 ```
 
-## ASCII Art (With Gradient - Light Blue to Purple)
+## For GitHub README (Recommended)
 
-<div style="font-family: monospace; line-height: 1.2;">
-<span style="color: #00ffff;">╔═════════════════════════════════════════════╗</span><br>
-<span style="color: #5fafff;">║                                             ║</span><br>
-<span style="color: #87dfff;">║       ██╗ █████╗ ████████╗███████╗██████╗   ║</span><br>
-<span style="color: #87d7ff;">║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║</span><br>
-<span style="color: #87afff;">║       ██║███████║   ██║   ███████╗██████╔╝  ║</span><br>
-<span style="color: #8787d7;">║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║</span><br>
-<span style="color: #875faf;">║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║</span><br>
-<span style="color: #8700d7;">║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║</span><br>
-<span style="color: #8700d7;">║                                             ║</span><br>
-<span style="color: #8700d7;">║    Just Audio Transformer Super Solution    ║</span><br>
-<span style="color: #ff00ff;">║                                             ║</span><br>
-<span style="color: #ff00ff;">╚═════════════════════════════════════════════╝</span>
-</div>
+Use the plain text version in a code block with syntax highlighting:
+
+```diff
++ ╔═════════════════════════════════════════════╗
++ ║                                             ║
++ ║       ██╗ █████╗ ████████╗███████╗██████╗   ║
++ ║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║
++ ║       ██║███████║   ██║   ███████╗██████╔╝  ║
++ ║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║
++ ║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║
++ ║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║
++ ║                                             ║
++ ║    Just Audio Transformer Super Solution    ║
++ ║                                             ║
++ ╚═════════════════════════════════════════════╝
+```
+
+Or use blockquote for a nice visual effect:
+
+> ```
+> ╔═════════════════════════════════════════════╗
+> ║                                             ║
+> ║       ██╗ █████╗ ████████╗███████╗██████╗   ║
+> ║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║
+> ║       ██║███████║   ██║   ███████╗██████╔╝  ║
+> ║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║
+> ║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║
+> ║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║
+> ║                                             ║
+> ║    Just Audio Transformer Super Solution    ║
+> ║                                             ║
+> ╚═════════════════════════════════════════════╝
+> ```
+>
+> **🎵 Just Audio Transformer Super-Resolution**
+> Production-Ready Audio Analysis Platform
 
 ---
 
