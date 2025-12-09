@@ -1,0 +1,39 @@
+# PyTorch and Deep Learning
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Audio Processing
+descript-audio-codec>=1.0.0
+# Note: descript-audio-codec automatically installs:
+#   - descript-audiotools (provides 'audiotools' module)
+#   - argbind
+#   - einops
+#   - tqdm
+librosa>=0.10.0
+soundfile>=0.12.0
+
+# Training and Monitoring
+tensorboard>=2.13.0
+tqdm>=4.65.0
+
+# Scientific Computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Tensor Operations
+einops>=0.6.1
+
+# Visualization and Analysis
+matplotlib>=3.7.0
+
+# Configuration and Argument Parsing
+argbind>=0.3.0
+
+# Distributed Training (included in PyTorch)
+# torch.distributed
+# torch.multiprocessing
+
+# Optional: Development Tools
+# jupyter>=1.0.0
+# seaborn>=0.12.0
+# ipython>=8.0.0

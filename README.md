@@ -1,5 +1,18 @@
 # JaT-AudioSR: Audio Super-Resolution with Diffusion Transformers
-
+<div style="font-family: monospace; line-height: 1.2;">
+<span style="color: #00ffff;">╔═════════════════════════════════════════════╗</span><br>
+<span style="color: #5fafff;">║                                             ║</span><br>
+<span style="color: #87dfff;">║       ██╗ █████╗ ████████╗███████╗██████╗   ║</span><br>
+<span style="color: #87d7ff;">║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║</span><br>
+<span style="color: #87afff;">║       ██║███████║   ██║   ███████╗██████╔╝  ║</span><br>
+<span style="color: #8787d7;">║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║</span><br>
+<span style="color: #875faf;">║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║</span><br>
+<span style="color: #8700d7;">║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║</span><br>
+<span style="color: #8700d7;">║                                             ║</span><br>
+<span style="color: #8700d7;">║    Just Audio Transformer Super Solution    ║</span><br>
+<span style="color: #ff00ff;">║                                             ║</span><br>
+<span style="color: #ff00ff;">╚═════════════════════════════════════════════╝</span>
+</div>
 高质量音频超分辨率系统，基于 Diffusion Transformer (DiT) 架构，使用 Flow Matching 训练范式和 DAC 编码器在潜空间进行生成。
 
 ## 主要特性
@@ -80,22 +93,28 @@ Low-Res Audio (16kHz) → DAC Encoder → LR Latent [B, 1024, T/512]
 
 ```bash
 # 克隆仓库
-git clone <your-repo-url>
-cd JaT
+git clone https://github.com/HUSRCF/JaTSR-Just-audio-transformer-super-solution.git
+cd JaTSR-Just-audio-transformer-super-solution
 
 # 创建虚拟环境
 conda create -n audiosr python=3.10
 conda activate audiosr
 
-# 安装 PyTorch (示例，请根据 CUDA 版本调整)
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# 安装 PyTorch (请根据你的 CUDA 版本调整)
+# CUDA 12.1
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# CUDA 11.8
+# pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 # 安装其他依赖
-pip install descript-audio-codec  # DAC codec
-pip install tensorboard            # 训练监控
-pip install torchaudio soundfile   # 音频处理
-pip install einops                 # 张量操作
-pip install tqdm                   # 进度条
+pip install -r requirements.txt
+```
+
+**注意**: 如果你没有 CUDA，可以安装 CPU 版本:
+```bash
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements.txt
 ```
 
 ## 数据准备
