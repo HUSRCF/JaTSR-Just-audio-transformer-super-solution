@@ -1,0 +1,52 @@
+<svg width="580" height="270" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="line1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5fafff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#87dfff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#87d7ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#87afff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line6" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8787d7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line7" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#875faf;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8700d7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="line9" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="580" height="270" fill="#0d1117" rx="10"/>
+
+  <!-- Use foreignObject for perfect monospace alignment -->
+  <foreignObject x="10" y="10" width="560" height="250">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Courier New', Consolas, Monaco, monospace; font-size: 14px; line-height: 1.0; font-weight: bold; white-space: pre; margin: 0; padding: 0;">
+      <pre style="margin: 0; padding: 0; color: #00ffff;">╔═════════════════════════════════════════════╗</pre>
+      <pre style="margin: 0; padding: 0; color: #5fafff;">║                                             ║</pre>
+      <pre style="margin: 0; padding: 0; color: #87dfff;">║       ██╗ █████╗ ████████╗███████╗██████╗   ║</pre>
+      <pre style="margin: 0; padding: 0; color: #87d7ff;">║       ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗  ║</pre>
+      <pre style="margin: 0; padding: 0; color: #87afff;">║       ██║███████║   ██║   ███████╗██████╔╝  ║</pre>
+      <pre style="margin: 0; padding: 0; color: #8787d7;">║  ██   ██║██╔══██║   ██║   ╚════██║██╔══██╗  ║</pre>
+      <pre style="margin: 0; padding: 0; color: #875faf;">║  ╚█████╔╝██║  ██║   ██║   ███████║██║  ██║  ║</pre>
+      <pre style="margin: 0; padding: 0; color: #8700d7;">║   ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ║</pre>
+      <pre style="margin: 0; padding: 0; color: #8700d7;">║                                             ║</pre>
+      <pre style="margin: 0; padding: 0; color: #8700d7;">║    Just Audio Transformer Super Solution    ║</pre>
+      <pre style="margin: 0; padding: 0; color: #ff00ff;">║                                             ║</pre>
+      <pre style="margin: 0; padding: 0; color: #ff00ff;">╚═════════════════════════════════════════════╝</pre>
+    </div>
+  </foreignObject>
+</svg>
