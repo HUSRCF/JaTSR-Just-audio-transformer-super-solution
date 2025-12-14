@@ -417,10 +417,16 @@ class TrainConfig:
 
     # Latent Perceptual Loss组件权重
     latent_loss_weight = 0.3           # Latent感知损失总权重 (相对reconstruction)
+    freq_loss_weight = 0.0             # 频域损失子权重 (在latent loss内部)
+    ms_loss_weight = 0.5               # 多尺度损失子权重 (在latent loss内部)
+    consistency_weight = 0.1           # 🔥 Hybrid Consistency Loss子权重 (数值尺度大，权重小)
+    """
+    Original:
+    latent_loss_weight = 0.3           # Latent感知损失总权重 (相对reconstruction)
     freq_loss_weight = 0.5             # 频域损失子权重 (在latent loss内部)
     ms_loss_weight = 0.5               # 多尺度损失子权重 (在latent loss内部)
     consistency_weight = 0.1           # 🔥 Hybrid Consistency Loss子权重 (数值尺度大，权重小)
-
+    """
     # --- Frequency Domain Loss 参数 ---
     low_freq_phase_ratio = 0.3         # 仅对低30%频率约束相位 (避免金属音)
 

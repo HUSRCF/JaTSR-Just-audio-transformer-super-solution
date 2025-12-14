@@ -1,11 +1,12 @@
 """
-JaT-AudioSR V3 推理脚本（支持自动切片+拼接）
+JaT-AudioSR V3 MOD1 推理脚本（支持自动切片+拼接）
 
 特性：
 - 固定16秒chunk（与训练对齐）
 - 自动切片长音频
 - 2秒overlap + 线性crossfade拼接
 - 支持指定总输出长度
+- 🔥 MOD1: DAC解码时显示tqdm进度条
 """
 
 import torch
@@ -15,6 +16,7 @@ import sys
 import json
 from pathlib import Path
 import argparse
+from tqdm import tqdm
 
 # 添加项目路径
 sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -197,7 +199,7 @@ def crossfade_chunks(chunks, overlap_frames):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='JaT-AudioSR V2 Inference Test')
+    parser = argparse.ArgumentParser(description='JaT-AudioSR V3 MOD1 Inference Test (with tqdm for DAC decoding)')
     parser.add_argument('--checkpoint', type=str, default='checkpoints/v2_full_run/last.pt',
                         help='Checkpoint path')
     parser.add_argument('--val-dir', type=str, default='data_processed_v13_final/val',
@@ -222,7 +224,7 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("JaT-AudioSR V3 推理测试")
+    print("JaT-AudioSR V3 MOD1 推理测试 (DAC解码进度条)")
     print("=" * 60)
 
     # 1. 加载模型
@@ -374,24 +376,50 @@ def main():
     # 8. DAC解码
     print("\n🔊 Decoding with DAC...")
 
-    # 解码生成的音频
-    with torch.no_grad():
-        # DAC expects [B, latent_dim, n_codebooks, T]
-        # 但我们的latent是 [B, 1024, T]，1024 = 72 codebooks * 1024 per book?
-        # 实际上DAC的latent维度应该是 [B, n_codebooks, T]
-        # 检查DAC的输入格式
+    # 🔥 MOD1: 分chunk解码DAC，实时显示进度
+    # 原因：解码整个180秒音频太慢，tqdm会卡在0%很久
+    # 方案：分成小块解码，每块解码完立即更新进度条
 
-        # 将 [1, 1024, T] reshape 为 DAC格式
-        # DAC 44.1kHz: n_codebooks=9, codebook_size=1024
-        # 所以 generated_latent 应该已经是正确的格式了
+    DAC_DECODE_CHUNK = 16.0  # 每次解码16秒（与训练对齐）
+    dac_decode_frames = int(DAC_DECODE_CHUNK * dac_sr / dac_hop)  # 1378 frames
 
-        generated_audio = dac_codec.decode(generated_latent)  # [1, 1, samples]
-        hr_audio = dac_codec.decode(hr_chunk)  # [1, 1, samples]
-        lr_audio = dac_codec.decode(lr_chunk)  # [1, 1, samples]
+    def decode_in_chunks(latent, name="Audio"):
+        """分chunk解码latent，显示进度条"""
+        total_frames = latent.shape[-1]
+        num_decode_chunks = (total_frames + dac_decode_frames - 1) // dac_decode_frames
 
-    generated_audio = generated_audio.squeeze(0).cpu()  # [1, samples]
-    hr_audio = hr_audio.squeeze(0).cpu()
-    lr_audio = lr_audio.squeeze(0).cpu()
+        audio_chunks = []
+
+        with torch.no_grad():
+            for i in tqdm(range(num_decode_chunks), desc=f"Decoding {name}", unit="chunk", leave=False):
+                start = i * dac_decode_frames
+                end = min(start + dac_decode_frames, total_frames)
+
+                latent_chunk = latent[:, :, start:end]
+                audio_chunk = dac_codec.decode(latent_chunk)  # [1, 1, samples]
+                audio_chunks.append(audio_chunk)
+
+        # 拼接所有音频chunk
+        full_audio = torch.cat(audio_chunks, dim=-1)
+        return full_audio.squeeze(0).cpu()  # [1, samples]
+
+    # 解码3个音频（外层进度条）
+    decode_tasks = [
+        ("Generated", generated_latent),
+        ("HR Ground Truth", hr_chunk),
+        ("LR Input", lr_chunk)
+    ]
+
+    decoded_audios = []
+
+    print(f"  Total latent length: {generated_latent.shape[-1]} frames")
+    print(f"  Decoding in {dac_decode_frames}-frame chunks (~{DAC_DECODE_CHUNK}s each)")
+
+    for task_name, latent in tqdm(decode_tasks, desc="DAC Decoding (overall)", unit="audio"):
+        audio = decode_in_chunks(latent, task_name)
+        decoded_audios.append(audio)
+
+    generated_audio, hr_audio, lr_audio = decoded_audios
 
     # 9. 保存音频
     print("\n💾 Saving results...")
