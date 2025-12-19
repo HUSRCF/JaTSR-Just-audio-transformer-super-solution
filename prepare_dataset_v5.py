@@ -36,8 +36,7 @@ from audiotools import AudioSignal
 
 # ==================== ⚙️ 配置参数 ====================
 SOURCE_DIRS = [
-    '1_source_audio',
-    'extra_audio'
+    'extraA'
 ]
 
 OUTPUT_DIR = 'data_processed_v13_final' 

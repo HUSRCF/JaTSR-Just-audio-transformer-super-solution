@@ -196,7 +196,7 @@ def gpu_worker(gpu_id, input_queue, result_queue):
                     # 3. Trim
                     if hop_length_48k is None:
                         # 用 batch_hr 估算 hop_length 保证对齐
-                        hop_length_48k = round(batch_hr.shape[-1] / z_lr.shape[-1])
+                        hop_length_48k = batch_hr.shape[-1] / z_lr.shape[-1]
 
                         overlap_samples_48k = int(OVERLAP_DURATION * HIGH_SR)
                         valid_samples_48k = int(CHUNK_DURATION * HIGH_SR)
